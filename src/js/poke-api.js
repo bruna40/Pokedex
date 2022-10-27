@@ -2,7 +2,7 @@ const pokeAPI = {};
 
 function convertPokeApiDetailToPokemon(poke) {
     const pokemon = new Pokemon();
-    pokemon.number = poke.order;
+    pokemon.number = poke.id;
     pokemon.name = poke.name;
     pokemon.image = poke.sprites.other.dream_world.front_default;
 
@@ -31,13 +31,3 @@ pokeAPI.getPokemon = (offset = 0,limit = 10)  => {
                 return Promise.all(promises);
             })
 }
-
-
-Promise.all([
-    fetch(`https://pokeapi.co/api/v2/pokemon/1`),
-    fetch(`https://pokeapi.co/api/v2/pokemon/2`),
-    fetch(`https://pokeapi.co/api/v2/pokemon/3`),
-    fetch(`https://pokeapi.co/api/v2/pokemon/4`),
-]).then((responses) => {
-    return Promise.all(responses.map((response) => response.json()));
-});
